@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AppareilService } from './services/appareil.services';
-
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
 
 @Component({
   selector: 'app-root',
@@ -8,19 +8,17 @@ import { AppareilService } from './services/appareil.services';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  isAuth = false;
-  lastUpdate = new Promise((resolve, reject) => {
-    const date = new Date();
-    setTimeout(
-      () => {
-        resolve(date);
-      }, 2000
-    );
-  });
+
+  secondes: number;
+
+ 
   constructor(){
   
   }
-
+ngOnInit(){
+  const counter = Observable.interval(1000);
+}
   
+
   
 }
