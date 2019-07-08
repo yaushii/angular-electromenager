@@ -1,28 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit} from '@angular/core';
 import { AppareilService } from '../services/appareil.services';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-appareil-view',
   templateUrl: './appareil-view.component.html',
   styleUrls: ['./appareil-view.component.scss']
 })
-export class AppareilViewComponent implements OnInit {
+export class AppareilViewComponent implements OnInit, OnDestroy {
 
   appareils:any[];
+  appareilSubscription: Subscription;
 
 // 'private appareilService: AppareilService' permet d'integrer appareilService dans AppComponent
-  constructor(private appareilService: AppareilService){
-    // setTimeout(
-    //   () => {
-    //     this.isAuth = true;
-    //   }, 4000
-    // );
-
-  }
+  constructor(private appareilService: AppareilService){  }
 
   ngOnInit(){
     // permet de recupere la liste du tableau appareils qui se trouve dans la page services.
-this.appareils = this.appareilService.appareils;
+this.appareilSubscription = this.appareilService.appareilsSubject.subscribe(
+  (appareils:any[]) => {
+    this.appareils = appareils;
+  }
+);
+this.appareilService.EmitAppareilSubject();
   }
 
   onAllumer(){
@@ -38,6 +38,9 @@ this.appareils = this.appareilService.appareils;
     }else{ return null;
     }
 
+  }
+  ngOnDestroy() {
+    this.appareilSubscription.unsubscribe();
   }
 
 }
