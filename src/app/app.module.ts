@@ -18,6 +18,7 @@ import { UserService } from './services/User.service';
 import { UserListComponent } from './user-list/user-list.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { User } from './models/User.model';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const appRoutes: Routes =[
@@ -59,6 +60,7 @@ const appRoutes: Routes =[
     FormsModule,
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
+    HttpClientModule,
 
   ],
   providers: [

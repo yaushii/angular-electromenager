@@ -37,8 +37,19 @@ this.appareilService.EmitAppareilSubject();
       console.log('on éteint tout !');
     }else{ return null;
     }
-
+    
+    
   }
+  
+  onSave() {
+    this.appareilService.saveAppareilsToServer();
+}
+
+onFetch() {
+  this.appareilService.getAppareilsFromServer();
+}
+
+
   ngOnDestroy() {
     this.appareilSubscription.unsubscribe();
   }

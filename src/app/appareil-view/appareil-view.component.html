@@ -12,12 +12,16 @@
                             [id]="appareil.id"></app-appareil>
                             
             </ul>
-            <button class="btn btn-success" 
+        <button class="btn btn-success" 
                     [disabled]="isAuth"
                     (click)="onAllumer()">Allumer</button>
-            <button class="btn btn-danger" 
+        <button class="btn btn-danger" 
                     [disabled]="isAuth"
                     (click)="onEteindre()">Éteint</button>
+        <button class="btn btn-primary"
+                    (click)="onSave()">Enregistrer les appareils</button>
+        <button class="btn btn-primary"
+                    (click)="onFetch()">Récupérer les appareils</button>
           </div>
         </div>
       </div>
